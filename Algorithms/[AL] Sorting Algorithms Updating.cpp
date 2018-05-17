@@ -153,6 +153,34 @@ void counting_Sort(int A[], int Aux[], int sortedA[], int n) {
 }
 
 
+/* Heap Sort*/
+/* Heaps can be used in sorting an array. In max-heaps, maximum element will always be at the root. Heap sort uses this property of heap to sort the array*/
+void heapify(int arr[], int n, int i) {
+	int largest = i; 
+	int l = 2 * 2 + 1;
+	int r = 2 * i + 2;
+
+	if (l < n && arr[l]>arr[largest])
+		largest = l;
+	if (r<n && arr[r]>arr[largest])
+		largest = r; 
+	if (largest != i) {
+		swap(arr[i], arr[largest]);
+		heapify(arr, n, largest);
+	}
+}
+void heap_Sort(int a[], int n) {
+	//build heap - rearrange array
+	for (int i = n / 2 - 1; i >= 0; i--) {
+		heapify(a, n, i);
+	}
+
+	for (int i = n - 1; i >= 0; i--) {
+		swap(a[0], a[i]);
+		heapify(a, i, 0);
+	}
+}
+
 int main() {
 	int T; cin >> T; 
 
