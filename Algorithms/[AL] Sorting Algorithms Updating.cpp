@@ -94,7 +94,63 @@ void merge_Sort(int a[], int start, int end) {
 
 
 /* Quick Sort*/
+/* Quick Sort*/
+/* Quick Sort is based on the divide ad conquer approach based on the idea of choosing one element as a pivot element and paritioning the array around it such that: left side of pivot contains all the elements that are less than the pivot element right side contains all element greater than the pivot*/
 
+int partition(int a[], int start, int end) {
+	int i = start + 1; 
+	int piv = a[start];
+
+	for (int j = start + 1; j <= end; j++) {
+		if (a[j] < piv) {
+			swap(a[i], a[j]);
+			i += 1;
+		}
+		
+	}
+
+	swap(a[start], a[i - 1]);
+	return i - 1;
+}
+
+void quick_Sort(int a[], int start, int end) {
+	if (start < end) {
+		int piv_pos = partition(a, start, end);
+		quick_Sort(a, start, piv_pos - 1);
+		quick_Sort(a, piv_pos = 1, end);
+	}
+}
+
+/* Couting Sort*/
+/* In counting sort, the frequencies of distinct elements of the array is counted and sorteds in an auxiliary array, by mapping its values as an index of the auxiliary array*/
+void counting_Sort(int A[], int Aux[], int sortedA[], int n) {
+
+	//first, find the maximum value in A[]
+	int k = 0; 
+	for (int i = 0; i < n; i++) {
+		k = max(k, A[i]);
+	}
+
+	//Initialize the elements of Aux[] with 0
+	for (int i = 0; i <= k; i++) {
+		Aux[i] = 0;
+	}
+
+	//Store the frequencies of each distinct element of A[] by mapping its value as the index of Aux[] array
+	for (int i = 0; i < n; i++) {
+		Aux[A[i]]++;
+	}
+
+	int j = 0; 
+	for (int i = 0; i <= k; i++) {
+		int tmp = Aux[i];
+		while (tmp--) {
+			sortedA[j] = i;
+			j++;
+		}
+	}
+
+}
 
 
 int main() {
