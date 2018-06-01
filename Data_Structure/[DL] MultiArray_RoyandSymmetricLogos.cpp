@@ -14,13 +14,16 @@ You are given a binary matrix of size N x N which represents the pixels of a log
 using namespace std; 
 
 int main() {
-	int T, i, j, flagx, flagy, mid; cin >> T;
+	int T, i, j, flagx, flagy, mid;
+	int N;
+	cin >> T;
 
 	while (T--) {
-		int N; cin >> N; 
+		cin >> N; 
 
 		flagx = flagy = 0; 
 		string str[N];
+
 		for (i = 0; i < N; i++) {
 			cin >> str[i];
 		}
@@ -32,17 +35,23 @@ int main() {
 			mid = N / 2 + 1;
 		}
 
-		for (i = 0; i < mid; i++) {
+
+
+		for (i = 0; i < mid; i++) 
+		{
 			if (str[i] == str[N - i - 1])
 				flagx = 1;
-			else {
+			else 
+			{
 				flagx = 0;
 				break;
 			}
 		}
-		for (i = 0; i < N; i++) {
-			for (j = 0; j < mid; j++) {
-				if (str[i][j] = str[i][N - j - 1])
+		for (i = 0; i < N; i++) 
+		{
+			for (j = 0; j < mid; j++)
+			{
+				if (str[i][j] == str[i][N - j - 1])
 					flagy = 1;
 				else {
 					flagy = 0;
@@ -52,6 +61,9 @@ int main() {
 			if (flagy == 0)
 				break;
 		}
+
+
+
 
 		if (flagx == 1 && flagy == 1)
 			cout << "YES" << endl;
